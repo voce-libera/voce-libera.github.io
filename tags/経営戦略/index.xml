@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>経営戦略 on 自由な翼</title><link>https://voce-libera.githube/tags/%E7%B5%8C%E5%96%B6%E6%88%A6%E7%95%A5/</link><description>Recent content in 経営戦略 on 自由な翼</description><generator>Hugo -- gohugo.io</generator><language>ja</language><copyright>Voce-Libera</copyright><lastBuildDate>Thu, 25 Dec 2025 00:00:00 +0900</lastBuildDate><atom:link href="https://voce-libera.githube/tags/%E7%B5%8C%E5%96%B6%E6%88%A6%E7%95%A5/index.xml" rel="self" type="application/rss+xml"/><item><title>☁️ AWS大規模障害の教訓：『クラウドは危険』という思考停止が招く、真の経営リスク</title><link>https://voce-libera.githube/post/aws-outage-and-cloud-realism/</link><pubDate>Thu, 25 Dec 2025 00:00:00 +0900</pubDate><guid>https://voce-libera.githube/post/aws-outage-and-cloud-realism/</guid><description>&lt;h2 id="-はじめにシステム停止という必然をどう受け入れるか"&gt;🚩 はじめに：システム停止という「必然」をどう受け入れるか
+&lt;/h2&gt;&lt;p&gt;世界最大のクラウドサービス、アマゾン・ウェブ・サービス（AWS）で大規模なシステム障害が発生しました。私たちの生活に深く根ざした決済、配送、SNS、そして公共サービスまでもが停止し、メディアは一斉に「クラウド一点集中の危うさ」を書き立てています。&lt;/p&gt;
+&lt;p&gt;しかし、SNSや技術者たちの冷静なコメントを見れば、その論調は異なります。
+「AWSだろうが、Google Cloud（GCP）だろうが、Microsoft Azureだろうが、止まる時は止まる。それがクラウドを利用するということだ」
+「むしろ、自前でサーバーを抱えるオンプレミスの方が、コストも事故率も高いことを忘れていないか？」&lt;/p&gt;
+&lt;p&gt;不法滞在問題や経済・外交の記事でも一貫して述べてきた通り、私たちに今必要なのは、綺麗事の安全神話ではなく、**「何事も完璧ではない」という前提に立ったリアリズム（現実主義）**です。&lt;/p&gt;
+&lt;p&gt;今回は、具体的な数値を根拠に、クラウド障害の正体と、それでも私たちがクラウドを選び続けるべき必然性を論じます。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="-1-数字が示すクラウド-vs-オンプレミスの生存率"&gt;📊 1. 数字が示す「クラウド vs オンプレミス」の生存率
+&lt;/h2&gt;&lt;p&gt;「クラウドは止まるから、自社でサーバーを持つ（オンプレミス）方が安心だ」という意見がありますが、これは数字を見ない感情論に過ぎません。&lt;/p&gt;
+&lt;h3 id="稼働率slaという冷徹な約束"&gt;稼働率（SLA）という冷徹な約束
+&lt;/h3&gt;&lt;p&gt;AWSなどのメガクラウド事業者は、サービスレベル合意（SLA）において、年間稼働率を**99.99%（フォーナイン）**以上に設定しているケースがほとんどです。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;99.99%稼働の意味:&lt;/strong&gt; 年間の停止時間はわずか&lt;strong&gt;52分34秒&lt;/strong&gt;以内。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;オンプレミスの現実:&lt;/strong&gt; 自社運用のサーバーで、24時間365日の監視・保守を完璧に行い、この稼働率を維持できる企業が日本にどれだけあるでしょうか。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="事故発生率のリアリズム"&gt;事故発生率のリアリズム
+&lt;/h3&gt;&lt;p&gt;IDCやUptime Instituteの統計によれば、データセンター障害の主な原因は「電源トラブル」や「ヒューマンエラー」です。
+メガクラウド事業者は、電源、回線、空調、すべてを多重化（冗長化）し、何千億円という投資を毎年行っています。一方、多くの中小企業や日本のレガシーなシステムのオンプレミス環境は、老朽化した機器や人手不足による運用ミスに晒されており、&lt;strong&gt;「障害の発生率」だけで見ればオンプレミスの方が圧倒的に高い&lt;/strong&gt;のが現実です。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="-2-コストという名の見えない壁"&gt;💰 2. コストという名の「見えない壁」
+&lt;/h2&gt;&lt;p&gt;クラウドの最大のメリットは、初期投資（CAPEX）を抑え、使った分だけ払う（OPEX）という柔軟性にあります。しかし、批判的な人々は「長く使えばクラウドの方が高くつく」と主張します。これも、真のコスト計算（TCO：総保有コスト）から目を背けている証拠です。&lt;/p&gt;
+&lt;h3 id="オンプレミスが隠しているコスト"&gt;オンプレミスが隠しているコスト
+&lt;/h3&gt;&lt;p&gt;自前でシステムを持つ場合、以下のコストが数字として計上されます。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;ハードウェア・ソフトウェア資産:&lt;/strong&gt; 5年ごとのリプレイス費用（数千万〜数億円）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;物理スペースと電気代:&lt;/strong&gt; サーバー室の賃料、24時間の空調代。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;高度なIT人材の確保:&lt;/strong&gt; 障害対応やセキュリティパッチ適用のために、月給数百万円クラスのエンジニアを自社で抱え続けるコスト。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;2024年の市場データによれば、クラウド移行を完了した企業は、5年間で&lt;strong&gt;ITインフラ運用コストを平均20%〜30%削減&lt;/strong&gt;できているという統計もあります。
+「止まった時の損失」だけに目を奪われ、日々の「垂れ流される運用コスト」を無視するのは、経営としての怠慢です。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="-3-クラウド三強どれを選んでも宿命は同じ"&gt;⚖️ 3. クラウド三強、どれを選んでも「宿命」は同じ
+&lt;/h2&gt;&lt;p&gt;AWS, Azure, GCP。これら「三強」のうちどれが最も優れているかという議論がありますが、結論から言えば、**「どこを使っても止まる時は止まる」**というのがリアリズムです。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;サービス&lt;/th&gt;
+&lt;th style="text-align: left"&gt;特徴&lt;/th&gt;
+&lt;th style="text-align: left"&gt;過去の主な大規模障害&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;AWS&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;圧倒的なシェアと機能数&lt;/td&gt;
+&lt;td style="text-align: left"&gt;リージョン全体のネットワーク障害（2021年等）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;Azure&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Windows環境との親和性&lt;/td&gt;
+&lt;td style="text-align: left"&gt;認証基盤（Microsoft Entra ID）のトラブル&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;GCP&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;データ分析・AIに強み&lt;/td&gt;
+&lt;td style="text-align: left"&gt;DNS設定ミスによる世界的サービス停止&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;これらは「設計が悪い」のではなく、**「複雑すぎるシステムは、確率的に必ずどこかで故障する」**というエントロピーの法則に従っているだけです。プロのエンジニアは「クラウドは落ちない」とは考えません。「落ちた時にどう被害を最小化するか（Design for Failure）」という思想で設計を行っています。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="-4-日本社会に蔓延する放置のツケ"&gt;📢 4. 日本社会に蔓延する「放置のツケ」
+&lt;/h2&gt;&lt;p&gt;不法滞在や金利の記事で繰り返してきた通り、&lt;strong&gt;「物事は小さいうちに解決するのが大事」&lt;strong&gt;です。ITの世界における「放置のツケ」とは、いわゆる&lt;/strong&gt;「レガシーシステム（古びたシステム）」の温存&lt;/strong&gt;です。&lt;/p&gt;
+&lt;h3 id="2025年の崖"&gt;2025年の崖
+&lt;/h3&gt;&lt;p&gt;経済産業省が警鐘を鳴らす「2025年の崖」によれば、老朽化した既存システムを放置し続けた場合、2025年以降、日本全体で最大&lt;strong&gt;年間12兆円&lt;/strong&gt;の経済損失が発生すると試算されています。&lt;/p&gt;
+&lt;p&gt;「クラウドは大規模障害があるから怖い」と言って、中身がブラックボックス化したオンプレミスの古いサーバーにしがみつく。この行為こそが、日本の国際競争力を奪っている元凶です。
+ビッグマック指数で見た通り、日本の価値が下がっている一因は、こうしたデジタル分野での決断力の欠如、すなわち「デジタル・リアリズム」の欠如にあるのです。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="-5-クラウド時代を生き抜く3つのリアリズム"&gt;💡 5. クラウド時代を生き抜く「3つのリアリズム」
+&lt;/h2&gt;&lt;p&gt;私たちはこのAWS障害を、単なる「迷惑な事件」として終わらせてはいけません。以下の3つの視点を持って、デジタル社会と向き合うべきです。&lt;/p&gt;
+&lt;h3 id="-マルチクラウドマルチリージョンの徹底"&gt;① マルチクラウド・マルチリージョンの徹底
+&lt;/h3&gt;&lt;p&gt;特定の事業者の、特定の拠点（リージョン）だけに依存するのはリスクです。重要なシステムであれば、東京と大阪の両方を使う（マルチリージョナリ）、あるいはAWSとAzureを併用する（マルチクラウド）といった、**「止まることを前提とした設計」**に投資すべきです。&lt;/p&gt;
+&lt;h3 id="-デジタル認証とセキュリティの高度化"&gt;② デジタル認証とセキュリティの高度化
+&lt;/h3&gt;&lt;p&gt;不動産や金融の記事でも述べましたが、アナログな書類文化や目検のセキュリティはもう限界です。クラウドが提供する高度な暗号化や多要素認証（MFA）を使いこなし、システム的にガードを固める。クラウドの障害リスクよりも、アナログな運用の「漏洩リスク」の方が、現代でははるかに深刻です。&lt;/p&gt;
+&lt;h3 id="-完璧を求めないという倫理"&gt;③ 「完璧」を求めないという倫理
+&lt;/h3&gt;&lt;p&gt;インフラが止まった際、私たちはすぐに「謝罪」や「責任」を求めます。しかし、テクノロジーの進化の恩恵を享受するのであれば、稀に起こる「システム停止」を、社会全体の不可抗力としてある程度受け入れる成熟度が必要です。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="結びデジタル主権を取り戻せ"&gt;結び：デジタル主権を取り戻せ
+&lt;/h2&gt;&lt;p&gt;AWSの大規模障害を見て「やっぱりクラウドはダメだ」と叫ぶのは、馬車を引いていた時代に「自動車は故障するから馬の方がいい」と言っているのと同義です。&lt;/p&gt;
+&lt;p&gt;日本の不動産が「世界標準」に近づき、金利のある世界が戻ってきたように、ITインフラもまた、世界共通の「クラウド標準」という波の中にあります。この波を拒絶することは、経済的・文化的な孤立を意味します。&lt;/p&gt;
+&lt;p&gt;政治家や経営層は、目先の障害報告書に目くじらを立てる前に、自社の、そして自国のデジタルインフラが「2025年の崖」の淵に立っていないかを直視してください。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;放置は、最大の罪です。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;障害を承知の上で使いこなし、落ちてもすぐに立ち上がる「レジリエンス（回復力）」を磨くこと。それこそが、主権国家としての意志であり、私たちが次世代に渡すべき「強いデジタル日本」の姿です。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="あとがきvoce-liberaの視点"&gt;あとがき：Voce-Liberaの視点
+&lt;/h3&gt;&lt;p&gt;結局のところ、どのテーマ（治安・外交・経済・IT）を論じても、たどり着く答えは一つです。「不都合な現実から目を逸らさず、ルールと数字に基づいて決断する」。クラウド障害は、私たちが「完璧」という幻想を捨て、真に合理的な社会へと移行するための、痛みある通過儀礼なのかもしれません。&lt;/p&gt;</description></item></channel></rss>
