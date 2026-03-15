@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>不正受給防止 on 自由な翼</title><link>https://voce-libera.githube/tags/%E4%B8%8D%E6%AD%A3%E5%8F%97%E7%B5%A6%E9%98%B2%E6%AD%A2/</link><description>Recent content in 不正受給防止 on 自由な翼</description><generator>Hugo -- gohugo.io</generator><language>ja</language><copyright>Voce-Libera</copyright><lastBuildDate>Mon, 16 Mar 2026 00:00:00 +0900</lastBuildDate><atom:link href="https://voce-libera.githube/tags/%E4%B8%8D%E6%AD%A3%E5%8F%97%E7%B5%A6%E9%98%B2%E6%AD%A2/index.xml" rel="self" type="application/rss+xml"/><item><title>【構造的解剖】なぜ助成金不正は『技術的』に防げるのか：法人マイナンバーを核としたリアルタイム検証</title><link>https://voce-libera.githube/post/corporate-number-validation-architecture/</link><pubDate>Mon, 16 Mar 2026 00:00:00 +0900</pubDate><guid>https://voce-libera.githube/post/corporate-number-validation-architecture/</guid><description>&lt;h2 id="1-序論不正受給を許しているのは情報の未接続である"&gt;1. 序論：不正受給を許しているのは「情報の未接続」である
+&lt;/h2&gt;&lt;p&gt;助成金や給付金の不正受給問題が報じられるたびに、現場からは「審査が甘い」「確認を徹底せよ」という声が上がります。しかし、本質的な問題は審査官の能力不足ではありません。&lt;strong&gt;「行政が既に持っているデータ」を、給付プロセスから遮断しているシステム設計&lt;/strong&gt;そのものにあります。&lt;/p&gt;
+&lt;p&gt;コロナ禍の給付金から現在の助成金に至るまで、共通して利用される手口は「急造された幽霊法人」や「実態のない従業員情報の捏造」です。しかし、法人マイナンバーをキーに、既存の行政サーバーを横断的に参照すれば、これらの不正は「申請ボタンを押す前」に自動的に弾くことが可能です。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="2-アーキテクチャの中核法人マイナンバーによる実績の可視化"&gt;2. アーキテクチャの中核：法人マイナンバーによる「実績の可視化」
+&lt;/h2&gt;&lt;p&gt;不正受給を狙う勢力は、制度に合わせて都合の良い「数字」を申告します。しかし、過去の事実は書き換えられません。法人マイナンバーを活用すれば、以下の3点を即座に確定できます。&lt;/p&gt;
+&lt;h3 id="-法人の生存証明と継続性"&gt;① 法人の「生存証明」と継続性
+&lt;/h3&gt;&lt;p&gt;いきなり給付金目的で作られた法人は、過去の納税実績が皆無です。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;技術的解決&lt;/strong&gt;: 法人マイナンバーをキーに国税庁の納税データサーバーと照合。設立日、決算確定申告の有無、消費税の納付実績を自動参照。実績が一定期間（例：2年以上）ない新設法人が多額の給付を申請した場合、その時点で自動的に「要詳細調査」フラグを立てる、あるいは申請不可とするロジックを実装できます。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-雇用情報雇用保険社会保険の完全一致"&gt;② 雇用情報（雇用保険・社会保険）の完全一致
+&lt;/h3&gt;&lt;p&gt;「正社員を非正規と偽る」「架空の従業員をでっち上げる」という手口は、厚労省の雇用保険データと突合すれば1秒で破綻します。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;技術的解決&lt;/strong&gt;: 申請画面に従業員名を入力させるのではなく、マイナンバーに紐付いた雇用保険・社会保険の加入者リストを**「行政サーバーからプルダウンで呼び出す」**形式にします。現在進行形で保険料を納付している実在の従業員しか選択できない仕組みにすれば、捏造の余地は物理的に消滅します。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-売上高の真実性e-tax連携"&gt;③ 売上高の真実性（e-Tax連携）
+&lt;/h3&gt;&lt;p&gt;「売上が50％下がった」という自己申告を信じる必要はありません。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;技術的解決&lt;/strong&gt;: 法人マイナンバーを通じてe-Taxの確定申告データ、あるいは電子インボイスの流通データと連携。過去の月別売上推移と現在の実態を、公的な納税エビデンスに基づいて自動検証します。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="3-なぜ申告というプロセスを残すのか"&gt;3. なぜ「申告」というプロセスを残すのか？
+&lt;/h2&gt;&lt;p&gt;ここで疑問が生じます。これだけデータが揃っているのに、なぜ行政はいまだに「申請者に書類を書かせる」のでしょうか。&lt;/p&gt;
+&lt;p&gt;その理由は、行政内部の**「権限のサイロ化」**です。
+厚労省の担当者は国税庁のデータを直接見ることができず、自治体の担当者は年金事務所のデータにアクセスできない。この「省庁間の壁」を維持するために、わざわざ国民に「各省庁から集めたエビデンスを紙にコピーして提出させる」という、壮大な無駄と不正の温床を作り出しているのです。&lt;/p&gt;
+&lt;p&gt;本来、法人マイナンバーとはこの「壁」を取り払うための&lt;strong&gt;マスターキー&lt;/strong&gt;であるはずです。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="4-結論我々の税金を正しく配分するために"&gt;4. 結論：我々の税金を「正しく」配分するために
+&lt;/h2&gt;&lt;p&gt;本来支給すべき、真に困窮している事業者に一刻も早く資金を届ける。そのためのスピードと正確性を両立させる手段は、データの自動連携以外にありません。&lt;/p&gt;
+&lt;p&gt;申告制は、善良な市民には「煩雑な事務作業」を強いて、悪意ある者には「不正の隙間」を与えるという、最悪のユーザー体験を生んでいます。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;過去の実績がある法人か（法人マイナンバー照合）&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;実在する雇用実態か（雇用・社会保険サーバー照合）&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;納税実態に基づいた計算か（税務データ照合）&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;これらを確認することは、現在のIT技術をもってすれば、決して難しいことではありません。我々の税金を、一部の指南役や犯罪者に略奪させないために。今こそ、法人マイナンバーを「ただの番号」から「統治の基盤」へとアップグレードする時です。&lt;/p&gt;
+&lt;p&gt;「書いた書類を信じる」時代を終わらせ、「事実をシステムで繋ぐ」時代へ。それこそが、公正な社会保障の第一歩です。&lt;/p&gt;
+&lt;hr&gt;
+&lt;div class="ad-container ad-briefs_bottom"&gt;&lt;a href="//af.moshimo.com/af/c/click?a_id=5316903&amp;p_id=54&amp;pc_id=54&amp;pl_id=620" rel="nofollow" referrerpolicy="no-referrer-when-downgrade" attributionsrc&gt;&lt;img src="//image.moshimo.com/af-img/0032/000000000620.gif" width="468" height="60" style="border:none;"&gt;&lt;/a&gt;&lt;img src="//i.moshimo.com/af/i/impression?a_id=5316903&amp;p_id=54&amp;pc_id=54&amp;pl_id=620" width="1" height="1" style="border:none;" loading="lazy"&gt;
+&lt;/div&gt;
+&lt;style&gt;
+.ad-container { margin: 16px 0; }
+.ad-placeholder {
+background: var(--card-background);
+border: 1px dashed var(--card-border-color);
+color: var(--card-text-color-secondary);
+border-radius: 8px;
+padding: 12px;
+text-align: center;
+font-size: 0.9rem;
+}
+&lt;/style&gt;</description></item></channel></rss>
