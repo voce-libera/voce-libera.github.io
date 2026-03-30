@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://firebird-techtalktech.com/sitemap.xml
+Sitemap: https://voce-libera.github.io/sitemap.xml
 
 # Allow crawling of all content
 Crawl-delay: 1
